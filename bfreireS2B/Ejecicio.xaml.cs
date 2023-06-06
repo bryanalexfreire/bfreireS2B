@@ -22,6 +22,8 @@ namespace bfreireS2B
         double totalNota2;
         double valueNota2;
 
+        double promedio1;
+        double promedio2;
         double promedioFinal;
 
 
@@ -62,13 +64,12 @@ namespace bfreireS2B
                 txtNota1.Text = "";
                 txtNota1.Focus();
             }
-
         }
 
         private void examenNota1_Unfocused(object sender, FocusEventArgs e)
         {
             valueExamen1 = Convert.ToDouble(txtExamenNota1.Text);
-            totalExamen1 = (valueExamen1 * 0.2) / 10;
+            totalExamen1 = (valueExamen1 * 0.2)/ 10;
             if (valueExamen1 > 0.1 && valueExamen1 < 10.1)
             {
 
@@ -85,8 +86,8 @@ namespace bfreireS2B
         {
             if (txtNota1.Text != "" && txtExamenNota1.Text != "")
             {
-                double promedio = (totalNota1 + totalExamen1);
-                lblPromedio1.Text = promedio.ToString();
+                promedio1 = (totalNota1 + totalExamen1);
+                lblPromedio1.Text = Convert.ToString(promedio1);
             }
             else
             {
@@ -118,7 +119,7 @@ namespace bfreireS2B
         {
             valueExamen2 = Convert.ToDouble(txtExamenNota2.Text);
             totalExamen2 = (valueExamen2 * 0.2) / 10;
-            if (valueExamen2 > 0.1 && valueExamen2 < 10.1)
+            if (valueExamen2 > 0.1 && valueExamen1 < 10.1)
             {
 
             }
@@ -130,17 +131,31 @@ namespace bfreireS2B
             }
         }
 
+        private void btnPromedioParcial2_Clicked(object sender, EventArgs e)
+        {
+            if (txtNota2.Text != "" && txtExamenNota2.Text != "")
+            {
+                promedio2 = (totalNota2 + totalExamen2);
+                lblPromedio2.Text = Convert.ToString(promedio2);
+            }
+            else
+            {
+                DisplayAlert("Aviso", "Ingrese calificaciones para calcular", "Cerrar");
+            }
+        }
+
         private void btnPromedioFinal_Clicked(object sender, EventArgs e)
         {
             if (lblPromedio1.Text != "" && lblPromedio2.Text != "")
             {
-                promedioFinal = Convert.ToDouble(lblPromedio1.Text) + Convert.ToDouble(lblPromedio2.Text);
+                promedioFinal = (Convert.ToDouble(promedio1) + Convert.ToDouble(promedio2)) *10 ;
                 DisplayAlert("Aviso", Convert.ToString(promedioFinal), "Cerrar");
             }
             else
             {
                 DisplayAlert("Aviso", "No hay priomedio final que calular", "Cerrar");
             }
+
             if(promedioFinal < 5)
             {
                 resultado.Text = "Reprobado";
@@ -158,17 +173,6 @@ namespace bfreireS2B
             }
         }
 
-        private void btnPromedioParcial2_Clicked(object sender, EventArgs e)
-        {
-            if (txtNota2.Text != "" && txtExamenNota2.Text != "")
-            {
-                double promedio2 = (promedio2 + promedio);
-                lblPromedio2.Text = promedio2.ToString();
-            }
-            else
-            {
-                DisplayAlert("Aviso", "Ingrese calificaciones para calcular", "Cerrar");
-            }
-        }
+        
     }
 }

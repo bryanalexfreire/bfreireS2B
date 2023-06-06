@@ -62,7 +62,7 @@
 
                 <Button x:Name="btnFecha" Text="FECHA" Clicked="btnFecha_Clicked_1"/>
 
-                <Label x:Name="resultado" Text="" FontSize="40"/>
+                <Label x:Name="resultado" Text="" FontSize="36"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
